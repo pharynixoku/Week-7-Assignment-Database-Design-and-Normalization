@@ -1,15 +1,18 @@
--- ==========================================
--- Question 1: Achieving First Normal Form (1NF)
--- ==========================================
+-- Week 7 Assignment: Database Design and Normalization
+-- Student Name: Simon Ohure Ochiti
+-- Date: 2026-11-12
 
--- 1. Create the new 1NF table structure
+-- ==========================================
+-- QUESTION 1: ACHIEVING FIRST NORMAL FORM (1NF)
+-- ==========================================
+-- Create your normalized table(s) below
 CREATE TABLE ProductDetail_1NF (
     OrderID INT,
     CustomerName VARCHAR(100),
     Product VARCHAR(100)
 );
 
--- 2. Insert the normalized records with atomic values (one product per row)
+-- Insert your records below
 INSERT INTO ProductDetail_1NF (OrderID, CustomerName, Product) VALUES
 (101, 'John Doe', 'Laptop'),
 (101, 'John Doe', 'Mouse'),
@@ -20,16 +23,15 @@ INSERT INTO ProductDetail_1NF (OrderID, CustomerName, Product) VALUES
 
 
 -- ==========================================
--- Question 2: Achieving Second Normal Form (2NF)
+-- QUESTION 2: ACHIEVING SECOND NORMAL FORM (2NF)
 -- ==========================================
-
--- 1. Create the Orders table to remove the partial dependency (CustomerName depends only on OrderID)
+-- Create your Orders table below
 CREATE TABLE Orders (
     OrderID INT PRIMARY KEY,
     CustomerName VARCHAR(100)
 );
 
--- 2. Create the OrderItems table to store products and quantities associated with each order
+-- Create your OrderItems table below
 CREATE TABLE OrderItems (
     OrderID INT,
     Product VARCHAR(100),
@@ -38,13 +40,12 @@ CREATE TABLE OrderItems (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 );
 
--- 3. Insert unique order and customer data into the Orders table
+-- Insert your records below
 INSERT INTO Orders (OrderID, CustomerName) VALUES
 (101, 'John Doe'),
 (102, 'Jane Smith'),
 (103, 'Emily Clark');
 
--- 4. Insert order items and quantities into the OrderItems table
 INSERT INTO OrderItems (OrderID, Product, Quantity) VALUES
 (101, 'Laptop', 2),
 (101, 'Mouse', 1),
